@@ -26,7 +26,7 @@ This project is a Django-based backend for a class scheduling system. It employs
 2. Create and activate a virtual environment:
     ```sh
     python -m venv env
-    source venv/bin/activate   # On Windows use `.\env\Scripts\activate`
+    source env/bin/activate   # On Windows use `.\env\Scripts\activate`
     ```
 
 3. Install the required dependencies:
@@ -36,15 +36,12 @@ This project is a Django-based backend for a class scheduling system. It employs
 
 4. Apply migrations:
     ```sh
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
-5. Create a superuser to access the Django admin:
-    ```sh
-    python manage.py createsuperuser
-    ```
 
-6. Run the development server:
+5. Run the development server:
     ```sh
     python manage.py runserver
     ```
