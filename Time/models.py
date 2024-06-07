@@ -1,30 +1,24 @@
 from django.db import models
-from datetime import datetime,time, timedelta
-
-# Function to generate time slots
-def generate_time_slots():
-    start_time = time(8, 30)
-    slots = []
-    for i in range(5):  # 5 sessions per day
-        end_time = (datetime.combine(datetime.today(), start_time) + timedelta(minutes=90)).time()
-        slots.append((start_time.strftime("%H:%M"), f"{start_time.strftime('%H:%M')} - {end_time.strftime('%H:%M')}"))
-        start_time = (datetime.combine(datetime.today(), end_time) + timedelta(minutes=10)).time()
-    return slots
-
-# Generate the time slot choices
-TIME_SLOTS = generate_time_slots()
 
 class TimetableSlot(models.Model):
-    day_choices = [
+    DAY_CHOICES = [
         ('Sunday', 'Sunday'),
         ('Monday', 'Monday'),
         ('Tuesday', 'Tuesday'),
         ('Wednesday', 'Wednesday'),
         ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
     ]
-    day = models.CharField(max_length=10, choices=day_choices)
-    start_time = models.CharField(max_length=10, choices=TIME_SLOTS)
+
+    TIME_SLOT_CHOICES = [
+        ('08.30 to 10.00', '08.30 to 10.00'),
+        ('10.10 to 11.40', '10.10 to 11.40'),
+        ('11.50 to 13.20', '11.50 to 13.20'),
+        ('13.30 to 15.00', '13.30 to 15.00'),
+        ('15.10 to 16.40', '15.10 to 16.40'),
+    ]
+
+    day = models.CharField(max_length=10, choices=DAY_CHOICES)
+    start_time = models.CharField(max_length=30, choices=TIME_SLOT_CHOICES)
     module_name = models.CharField(max_length=100)
     teacher_name = models.CharField(max_length=100)
     group_name = models.CharField(max_length=100)
@@ -32,3 +26,4 @@ class TimetableSlot(models.Model):
 
     def __str__(self):
         return f"{self.module_name} - {self.teacher_name} - {self.day} {self.start_time}"
+
