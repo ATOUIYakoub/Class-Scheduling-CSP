@@ -68,9 +68,7 @@ AC-3 is used to reduce the search space before applying the backtracking algorit
 After the initial reduction by AC-3, backtracking is employed to search for solutions. The backtracking algorithm recursively assigns values to variables while ensuring that constraints are satisfied. If a conflict arises, it backtracks to the previous step and tries a different assignment.
 
 ### Implementation
-- **ac3.py**: Contains the implementation of the AC-3 algorithm.
-- **backtracking.py**: Contains the implementation of the backtracking algorithm.
-- **utils.py**: Contains utility functions to support the CSP solver.
+- **csp_utils.py**: Contains utility functions to support the CSP solver.
 
 To execute the timetable scheduling:
 1. Ensure that you have populated the database with the necessary data (classrooms, courses, instructors, and timeslots).
