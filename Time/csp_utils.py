@@ -32,7 +32,7 @@ TEACHERS = {
 GROUPS = [f'Group{num}' for num in range(1, 7)]
 TD_ROOMS = [f"TD{room}" for room in range(1, 26)]
 TP_ROOMS = [f"TP{room}" for room in range(1, 12)]
-LECTURE_ROOMS = [f"Amphi{room}" for room in range(1, 3)]
+LECTURE_ROOMS = [f"Amphi{room}" for room in range(7, 8)]
 CLASSROOMS = TD_ROOMS + TP_ROOMS + LECTURE_ROOMS
 DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
 
@@ -44,8 +44,6 @@ def generate_time_slots():
         slots.append((start_time.strftime("%H:%M"), f"{start_time.strftime('%H:%M')} - {end_time.strftime('%H:%M')}"))
         start_time = (datetime.combine(datetime.today(), end_time) + timedelta(minutes=10)).time()
     return slots
-
-TIME_SLOTS = [slot[0] for slot in generate_time_slots()]
 
 def generate_timetable():
     slots = []
@@ -64,7 +62,7 @@ def generate_timetable():
     # Assign lectures and other sessions
     for day in DAYS:
         for slot_index, slot in enumerate(TIME_SLOTS):
-            if day == 'Tuesday' and slot == '13:30 - 15:00':
+            if day == 'Tuesday' and slot_index >= 3:
                 break  # Stop generating slots after the third session on Tuesday
 
             # Assign lectures
@@ -149,3 +147,7 @@ def generate_timetable():
                                 sessions_assigned_per_teacher[teacher].remove((last_session[0], last_session[1]))
 
     return slots
+
+TIME_SLOTS = [slot[0] for slot in generate_time_slots()]
+
+generate_timetable()
