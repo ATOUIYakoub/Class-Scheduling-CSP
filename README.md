@@ -39,6 +39,7 @@ This project is a Django-based backend for a class scheduling system. It employs
     python manage.py makemigrations
     python manage.py migrate
     ```
+    **Note**: If the migrations do not work, you can comment out the contents of `csp_utils.py` and related references in `views.py`. After running the migration commands, uncomment the previously commented lines.
 
 5. Run the development server:
     ```sh
@@ -54,7 +55,7 @@ Ensure that you configure your database and other settings in the `settings.py` 
 1. Access the Django admin interface at `http://127.0.0.1:8000/admin` and log in using the superuser credentials created earlier.
 2. Use the admin interface to input data about classrooms, courses, instructors, and timeslots.
 3. The timetable scheduling algorithm can be triggered via the provided endpoints or by implementing custom views.
-
+4. To test with Swagger, access the API documentation at `http://127.0.0.1:8000/api/schema/docs`.
 
 ## Timetable Scheduling
 
@@ -76,5 +77,3 @@ To execute the timetable scheduling:
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate tests.
-
-
