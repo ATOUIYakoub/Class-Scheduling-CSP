@@ -45,7 +45,9 @@ def generate_time_slots():
         start_time = (datetime.combine(datetime.today(), end_time) + timedelta(minutes=10)).time()
     return slots
 
-def generate_timetable():
+TIME_SLOTS = [slot[0] for slot in generate_time_slots()]
+
+def generate_timetable(constraints=None):
     slots = []
     lecture_modules = [module for module in MODULES if '_lecture' in module]
     other_modules = [module for module in MODULES if '_lecture' not in module]
@@ -58,6 +60,19 @@ def generate_timetable():
 
     # Track classroom usage
     classroom_usage = {day: {slot: [] for slot in TIME_SLOTS} for day in DAYS}
+
+    # Process constraints
+    if constraints:
+        teacher_availability = constraints.get('teacher_availability', {})
+    else:
+        teacher_availability = {}
+
+    def is_teacher_available(teacher, day, slot_index):
+        if teacher in teacher_availability:
+            unavailable_slots = teacher_availability[teacher].get(day, [])
+            if slot_index in unavailable_slots:
+                return False
+        return True
 
     # Assign lectures and other sessions
     for day in DAYS:
@@ -73,7 +88,7 @@ def generate_timetable():
                     if module in modules:
                         teacher = t
                         break
-                if teacher:
+                if teacher and is_teacher_available(teacher, day, slot_index):
                     for classroom in LECTURE_ROOMS:
                         if classroom not in classroom_usage[day][slot]:
                             if not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_teacher[teacher]) and \
@@ -103,7 +118,7 @@ def generate_timetable():
                         if module in modules:
                             teacher = t
                             break
-                    if teacher:
+                    if teacher and is_teacher_available(teacher, day, slot_index):
                         for classroom in (TD_ROOMS if module.endswith('_td') else TP_ROOMS):
                             if classroom not in classroom_usage[day][slot]:
                                 for group in GROUPS:

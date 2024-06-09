@@ -39,8 +39,6 @@ This project is a Django-based backend for a class scheduling system. It employs
     python manage.py makemigrations
     python manage.py migrate
     ```
-    -Note: if there is an error try to comment the file of csp_utils.py or copy it and comment any other relation with it like in views.py and run the commandes then uncomment again 
-
 
 5. Run the development server:
     ```sh
