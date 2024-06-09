@@ -29,3 +29,10 @@ class TimetableListCreate(generics.ListCreateAPIView):
 
         serializer = TimetableSlotSerializer(latest_timetable_slots, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        constraints = request.data.get('constraints', {})
+        timetable = generate_timetable(constraints)
+
+        serializer = TimetableSlotSerializer(timetable, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
