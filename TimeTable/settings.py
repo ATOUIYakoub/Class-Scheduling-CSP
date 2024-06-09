@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #add
+    'corsheaders',
     'rest_framework',
     'Time',
 ]
@@ -50,12 +51,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 #add new
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", 
-    "http://127.0.0.1:3000", # Add the origin of your Next.js frontend
+    "http://localhost:5000", 
+    "http://127.0.0.1:5000", # Add the origin of your Next.js frontend
     # Add other origins if needed
 ]
 

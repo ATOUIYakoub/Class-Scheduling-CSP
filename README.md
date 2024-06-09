@@ -40,7 +40,6 @@ This project is a Django-based backend for a class scheduling system. It employs
     python manage.py migrate
     ```
 
-
 5. Run the development server:
     ```sh
     python manage.py runserver
