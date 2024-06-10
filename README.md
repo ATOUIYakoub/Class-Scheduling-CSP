@@ -6,7 +6,6 @@ This project is a Django-based backend for a class scheduling system. It employs
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Timetable Scheduling](#timetable-scheduling)
 - [Contributing](#contributing)
 
