@@ -11,11 +11,6 @@ This project is a Django-based backend for a class scheduling system. It employs
 
 ## Installation
 
-### Prerequisites
-- Python 3.7+
-- Django 3.1+
-- Git
-
 ### Steps
 1. Clone the repository:
     ```sh
