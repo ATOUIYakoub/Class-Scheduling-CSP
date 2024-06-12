@@ -157,7 +157,3 @@ def generate_timetable(constraints=None):
                         break
 
     return slots
-
-TIME_SLOTS = [slot[0] for slot in generate_time_slots()]
-
-generate_timetable()
