@@ -51,18 +51,17 @@ const ScheduleTablestd = () => {
                 <td className="border border-neutral-700 px-4 py-2">{day}</td>
                 {Object.keys(scheduleByDayAndGroup[day]).map(group => (
                   <td key={group} className="border border-neutral-700 px-4 py-2">
-                    {scheduleByDayAndGroup[day][group] &&
-                      scheduleByDayAndGroup[day][group].map(item => (
-                        <div key={item.id}>
-                                                                          <p><strong>Module:</strong> {item.id}</p>
+                  {scheduleByDayAndGroup[day][group] &&
+    scheduleByDayAndGroup[day][group].slice(0, 3).map(item => (
+        <div key={item.id}>
+            <p><strong>Module:</strong> {item.module_name}</p>
+            <p><strong>Teacher:</strong> {item.teacher_name}</p>
+            <p><strong>Time:</strong> {item.start_time}</p>
+            <p><strong>Classroom:</strong> {item.classroom_name}</p>
+            <hr className='border-neutral-700'/>
+        </div>
+    ))}
 
-                          <p><strong>Module:</strong> {item.module_name}</p>
-                          <p><strong>Teacher:</strong> {item.teacher_name}</p>
-                          <p><strong>Time:</strong> {item.start_time}</p>
-                          <p><strong>Classroom:</strong> {item.classroom_name}</p>
-                          <hr className='border-neutral-700'/>
-                        </div>
-                      ))}
                   </td>
                 ))}
               </tr>
