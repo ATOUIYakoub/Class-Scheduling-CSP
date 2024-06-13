@@ -99,9 +99,11 @@ The frontend for this project is built using React and is located in the `Front-
 
 Ensure that your backend server is running concurrently to enable full functionality.
 
+## Video Demonstration
+
 Here is a video demonstration of the application in action:
 
-[![Video Demonstration](Screenshots/capture AI CSP.png)](link_to_video)
+![Video Demonstration](capture_AI_CSP.mp4)
 
 ## Screenshots
 
