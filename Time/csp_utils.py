@@ -22,17 +22,16 @@ TEACHERS = {
     'Dr. Kaci': ['Entrepreneuriat_lecture'],
     'M. Abbas && Mme. Ladlani': ['AI_tp'],
     'Mme. Djenane': ['Securite_td'],
+    'Dr. Djebari': ['Securite_lecture'],
     'Dr. Zenadji': ['Reseaux_lecture', 'Reseaux_td'],
     'Mme. Khelouf': ['Securite_td'],
     'Mme. Kassa': ['Securite_td'],
-    'Dr. Saba': ['Analyse_numerique_td'],
-    'Dr. Djebari': ['Securite_lecture'],
     'M. Bechar': ['AI_tp']
 }
 
 GROUPS = [f'Group{num}' for num in range(1, 7)]
-TD_ROOMS = [f"TD{room}" for room in range(1, 26)]
-TP_ROOMS = [f"TP{room}" for room in range(1, 12)]
+TD_ROOMS = [f"S{room}" for room in range(1, 26)]
+TP_ROOMS = [f"SM{room}" for room in range(1, 12)]
 LECTURE_ROOMS = [f"Amphi{room}" for room in range(7, 8)]
 CLASSROOMS = TD_ROOMS + TP_ROOMS + LECTURE_ROOMS
 DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
@@ -40,7 +39,7 @@ DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
 def generate_time_slots():
     start_time = datetime.strptime("08:30", "%H:%M").time()
     slots = []
-    for i in range(5):  # 5 sessions per day
+    for i in range(4):  # 5 sessions per day
         end_time = (datetime.combine(datetime.today(), start_time) + timedelta(minutes=90)).time()
         slots.append((start_time.strftime("%H:%M"), f"{start_time.strftime('%H:%M')} - {end_time.strftime('%H:%M')}"))
         start_time = (datetime.combine(datetime.today(), end_time) + timedelta(minutes=10)).time()
@@ -55,6 +54,17 @@ def split_groups_among_teachers(groups, teachers):
     for i, group in enumerate(groups):
         groups_per_teacher[teachers[i % num_teachers]].append(group)
     return groups_per_teacher
+
+def has_excessive_consecutive_sessions(group, day, slot_index, sessions_assigned_per_group):
+    count = 0
+    for i in range(max(0, slot_index - 2), slot_index + 1):
+        if (day, i) in sessions_assigned_per_group[group]:
+            count += 1
+        else:
+            count = 0
+        if count > 2:
+            return True
+    return False
 
 def generate_timetable(constraints=None):
     # Delete all existing timetable slots
@@ -100,15 +110,16 @@ def generate_timetable(constraints=None):
                                 if not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_teacher[teacher]) and \
                                         all(lectures_per_day_per_group[group][day] < 2 for group in GROUPS) and \
                                         lectures_per_day_per_teacher[teacher][day] < 2:
-                                    slots.append(TimetableSlot.objects.create(
-                                        day=day,
-                                        start_time=slot,
-                                        module_name=module,
-                                        teacher_name=teacher,
-                                        group_name="; ".join(GROUPS),  # All groups
-                                        classroom_name=classroom
-                                    ))
+                                    # Assign lecture session for each group individually
                                     for group in GROUPS:
+                                        slots.append(TimetableSlot.objects.create(
+                                            day=day,
+                                            start_time=slot,
+                                            module_name=module,
+                                            teacher_name=teacher,
+                                            group_name=group,  # Individual group
+                                            classroom_name=classroom
+                                        ))
                                         sessions_assigned_per_group[group].append((day, slot_index))
                                         lectures_per_day_per_group[group][day] += 1
                                     sessions_assigned_per_teacher[teacher].append((day, slot_index))
@@ -129,6 +140,8 @@ def generate_timetable(constraints=None):
             for group in groups:
                 assigned = False
                 for day in DAYS:
+                    sessions_today = 0  # Track sessions assigned today for the group
+                    consecutive_sessions = 0  # Track consecutive sessions for the group
                     for slot_index, slot in enumerate(TIME_SLOTS):
                         if day == 'Tuesday' and slot_index >= 3:
                             break  # Stop generating slots after the third session on Tuesday
@@ -136,8 +149,11 @@ def generate_timetable(constraints=None):
                             classroom_list = TD_ROOMS if module.endswith('_td') else TP_ROOMS
                             for classroom in classroom_list:
                                 if classroom not in classroom_usage[day][slot]:
-                                    if not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_group[group]) and \
-                                            not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_teacher[teacher]):
+                                    if not has_excessive_consecutive_sessions(group, day, slot_index, sessions_assigned_per_group) and \
+                                            not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_group[group]) and \
+                                            not any(s[0] == day and s[1] == slot_index for s in sessions_assigned_per_teacher[teacher]) and \
+                                            lectures_per_day_per_group[group][day] < 4 and \
+                                            consecutive_sessions < 4 and sessions_today < 5:
                                         slots.append(TimetableSlot.objects.create(
                                             day=day,
                                             start_time=slot,
@@ -148,9 +164,16 @@ def generate_timetable(constraints=None):
                                         ))
                                         sessions_assigned_per_group[group].append((day, slot_index))
                                         sessions_assigned_per_teacher[teacher].append((day, slot_index))
+                                        if '_lecture' in module:
+                                            lectures_per_day_per_teacher[teacher][day] += 1
+                                            lectures_per_day_per_group[group][day] += 1
                                         classroom_usage[day][slot].append(classroom)
                                         assigned = True
+                                        consecutive_sessions += 1
+                                        sessions_today += 1
                                         break
+                                    else:
+                                        consecutive_sessions = 0
                             if assigned:
                                 break
                     if assigned:
