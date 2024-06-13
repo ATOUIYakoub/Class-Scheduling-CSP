@@ -102,10 +102,10 @@ Ensure that your backend server is running concurrently to enable full functiona
 Here are some screenshots of the application:
 
 ### Timetable For Teacher
-![TeacherTable View](Screenshots/TeacherTable.png)
+![Teacher Table ](Screenshots/TeacherTable.png)
 
 ### Timetable For Groups
-![Scheduling Algorithm](screenshots/scheduling_algorithm.png)
+![Some Groups Table](Screenshots/GroupsTable.png)
 
 ## Contributing
 
