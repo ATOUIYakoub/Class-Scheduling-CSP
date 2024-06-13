@@ -93,7 +93,7 @@ The frontend for this project is built using React and is located in the `Front-
     npm start
     ```
 
-5. Access the React application at `http://localhost:3000`.
+5. Access the React application at `http://localhost:5000`.
 
 Ensure that your backend server is running concurrently to enable full functionality.
 
