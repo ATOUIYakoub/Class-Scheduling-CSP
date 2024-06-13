@@ -103,7 +103,7 @@ Ensure that your backend server is running concurrently to enable full functiona
 
 Here is a video demonstration of the application in action:
 
-[Capture AI CSP](Screenshots/capture AI CSP.mp4)
+[Video Demonstration](Screenshots/Video_Demonstration.mp4)
 
 ## Screenshots
 
