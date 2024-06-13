@@ -8,6 +8,8 @@ This project is a Django-based backend for a class scheduling system. It employs
 - [Usage](#usage)
 - [Timetable Scheduling](#timetable-scheduling)
 - [Frontend Setup](#frontend-setup)
+- [Video Demonstration](#video-demonstration)
+- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 
 ## Backend Setup
@@ -96,6 +98,10 @@ The frontend for this project is built using React and is located in the `Front-
 5. Access the React application at `http://localhost:5000`.
 
 Ensure that your backend server is running concurrently to enable full functionality.
+
+Here is a video demonstration of the application in action:
+
+[![Video Demonstration](Screenshots/capture AI CSP.png)](link_to_video)
 
 ## Screenshots
 
