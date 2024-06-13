@@ -7,9 +7,10 @@ This project is a Django-based backend for a class scheduling system. It employs
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Timetable Scheduling](#timetable-scheduling)
+- [Frontend Setup](#frontend-setup)
 - [Contributing](#contributing)
 
-## Installation
+## Backend Setup
 
 ### Steps
 1. Clone the repository:
@@ -67,6 +68,34 @@ After the initial reduction by AC-3, backtracking is employed to search for solu
 To execute the timetable scheduling:
 1. Ensure that you have populated the database with the necessary data (classrooms, courses, instructors, and timeslots).
 2. Use the provided management commands or views to trigger the scheduling process.
+
+## Frontend Setup
+
+The frontend for this project is built using React and is located in the `Front-end` folder. Follow these steps to set up and run the frontend:
+
+1. Navigate to the `Front-end` directory:
+    ```sh
+    cd front-end
+    ```
+
+2. Install the required dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Build the React application:
+    ```sh
+    npm run build
+    ```
+
+4. Start the development server:
+    ```sh
+    npm start
+    ```
+
+5. Access the React application at `http://localhost:3000`.
+
+Ensure that your backend server is running concurrently to enable full functionality.
 
 ## Contributing
 
