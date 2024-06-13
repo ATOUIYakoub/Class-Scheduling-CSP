@@ -97,6 +97,16 @@ The frontend for this project is built using React and is located in the `Front-
 
 Ensure that your backend server is running concurrently to enable full functionality.
 
+## Screenshots
+
+Here are some screenshots of the application:
+
+### Timetable For Teacher
+![Timetable View](screenshots/timetable_view.png)
+
+### Timetable For Groups
+![Scheduling Algorithm](screenshots/scheduling_algorithm.png)
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate tests.
