@@ -85,17 +85,12 @@ The frontend for this project is built using React and is located in the `Front-
     npm install
     ```
 
-3. Build the React application:
+3. Start the Vite development server:
     ```sh
-    npm run build
+    npm run dev
     ```
 
-4. Start the development server:
-    ```sh
-    npm start
-    ```
-
-5. Access the React application at `http://localhost:5000`.
+4. Access the React application at `http://localhost:5173`.
 
 Ensure that your backend server is running concurrently to enable full functionality.
 
