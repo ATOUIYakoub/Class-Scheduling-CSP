@@ -17,7 +17,7 @@ This project is a Django-based backend for a class scheduling system. It employs
 ### Steps
 1. Clone the repository:
     ```sh
-    git clone https://github.com/ATOUIYakoub/Backend-class-scheduling-CSP.git
+    git clone https://github.com/ATOUIYakoub/Class-Scheduling-CSP.git
     ```
 
 2. Create and activate a virtual environment:
