@@ -103,7 +103,7 @@ Ensure that your backend server is running concurrently to enable full functiona
 
 Here is a video demonstration of the application in action:
 
-[Video Demonstration](Screenshots/Video_Demonstration.mp4)
+[Download the video](Screenshots/Video_Demonstration.mp4)
 
 ## Screenshots
 
