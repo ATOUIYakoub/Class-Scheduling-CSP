@@ -37,12 +37,18 @@ CLASSROOMS = TD_ROOMS + TP_ROOMS + LECTURE_ROOMS
 DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
 
 def generate_time_slots():
-    start_time = datetime.strptime("08:30", "%H:%M").time()
+    start_times = [
+        datetime.strptime("08:30", "%H:%M").time(),
+        datetime.strptime("10:10", "%H:%M").time(),
+        datetime.strptime("11:50", "%H:%M").time(),
+        datetime.strptime("15:10", "%H:%M").time()
+    ]
+    
     slots = []
-    for i in range(4):  # 5 sessions per day
+    for start_time in start_times:
         end_time = (datetime.combine(datetime.today(), start_time) + timedelta(minutes=90)).time()
         slots.append((start_time.strftime("%H:%M"), f"{start_time.strftime('%H:%M')} - {end_time.strftime('%H:%M')}"))
-        start_time = (datetime.combine(datetime.today(), end_time) + timedelta(minutes=10)).time()
+        
     return slots
 
 TIME_SLOTS = [slot[0] for slot in generate_time_slots()]
