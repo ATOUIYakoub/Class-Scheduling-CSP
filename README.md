@@ -3,7 +3,7 @@
 This project is a Django-based backend for a class scheduling system. It employs Constraint Satisfaction Problem (CSP) techniques, specifically AC-3 (Arc Consistency Algorithm #3) and backtracking, to generate feasible timetables for classes.
 
 ## Table of Contents
-- [Installation](#installation)
+- [Backend Setup](#Backend-Setup)
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Timetable Scheduling](#timetable-scheduling)
