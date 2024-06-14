@@ -57,9 +57,7 @@ MIDDLEWARE = [
 
 #add new
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5000", 
-    "http://127.0.0.1:5000", # Add the origin of your Next.js frontend
-    # Add other origins if needed
+    "http://localhost:5173", 
 ]
 
 # Optionally, you can set the following to True if you want to allow credentials (e.g., cookies) to be included in cross-origin requests
