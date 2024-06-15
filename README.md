@@ -85,7 +85,12 @@ The frontend for this project is built using React and is located in the `Front-
     npm install
     ```
 
-3. Start the Vite development server:
+3. Install Axios:
+    ```sh
+    npm install axios
+    ```
+
+4. Start the Vite development server:
     ```sh
     npm run dev
     ```
