@@ -23,7 +23,7 @@ This project is a Django-based backend for a class scheduling system. It employs
 2. Create and activate a virtual environment:
     ```sh
     python -m venv env
-    source env/bin/activate   # On Windows use `.\env\Scripts\activate`
+    .\env\Scripts\activate   # On Linux use `source env/bin/activate`
     ```
 
 3. Install the required dependencies:
