@@ -103,7 +103,7 @@ Ensure that your backend server is running concurrently to enable full functiona
 
 Here is a video demonstration of the application in action:
 
-[Download the video](Screenshots/Video_Demonstration.mp4)
+https://raw.github.com/ATOUIYakoub/Class-Scheduling-CSP/blob/main/Screenshots/Video_Demonstration.mp4
 
 ## Screenshots
 
